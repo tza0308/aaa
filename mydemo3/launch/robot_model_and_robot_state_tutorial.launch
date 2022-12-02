@@ -1,0 +1,13 @@
+<launch>
+  <include file="$(find panda_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <node name="RobotModel_RobotState"
+        pkg="MyDemo"
+        type="RobotModel_RobotState"
+        respawn="false" output="screen">
+    <rosparam command="load"
+              file="$(find panda_moveit_config)/config/kinematics.yaml"/>
+  </node>
+</launch>

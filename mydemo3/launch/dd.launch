@@ -1,0 +1,14 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find franka_description)/robots/panda_arm.urdf.xacro'"/>
+
+
+  <!-- load SRDF -->
+  <param name="robot_description_semantic" command="$(find xacro)/xacro --inorder '$(find panda_moveit_config)/config/panda_arm_hand.srdf.xacro'"/>
+  <include file="$(find panda_moveit_config)/launch/planning_context.launch"/>
+
+
+  <node name="planning_scene_ros_api_tutorial" pkg="MyDemo" type="dd" respawn="false" output="screen">
+  <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml"/>
+  </node>
+
+</launch>
